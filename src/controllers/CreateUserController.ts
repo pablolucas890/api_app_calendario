@@ -16,8 +16,6 @@ interface Request{
 
     public async execute({name, email, password, type}:Request):Promise<User>{
         
-
-
         const userRepository = getRepository(User)
 
         const hashed = await hash(password, 8)
