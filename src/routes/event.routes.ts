@@ -18,7 +18,7 @@ eventsRouter.post('/', async (request, response) => {
 
   
   
-    return response.json(event);
+    return response.status(200).json({"message": "Evento criado com sucesso"});
   });
 
  eventsRouter.get('/', async(request, response) => {
@@ -26,7 +26,7 @@ eventsRouter.post('/', async (request, response) => {
 
      const events = await listEvent.execute()
 
-     return response.json(events)
+     return response.status(200).json(events)
  })
 
   export default eventsRouter
