@@ -2,6 +2,8 @@ import { compare } from "bcryptjs";
 import { getCustomRepository, getRepository } from "typeorm";
 import AppError from "../errors/AppError";
 import UserRepository from "../repositories/UserRepository";
+import { sign } from "jsonwebtoken";
+
 
 interface Request{
     email?:string;
@@ -22,7 +24,7 @@ class AuthenticatedUser {
             throw new AppError("Email/Senha incorretos", 401)
         }
 
-        const passwordMatch = compare(password, user.password);
+        const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
             throw new AppError("Email/Password incorret");
@@ -47,6 +49,4 @@ class AuthenticatedUser {
 
 export default AuthenticatedUser
 
-function sign(arg0: { email: string | undefined; }, arg1: string, arg2: { subject: string; expiresIn: string; }) {
-    throw new Error("Function not implemented.");
-}
+
