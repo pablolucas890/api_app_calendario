@@ -1,5 +1,6 @@
 import { hash } from 'bcryptjs';
 import { getConnectionManager, getRepository } from "typeorm";
+import AppError  from '../errors/AppError';
 import User from "../models/User";
 
  
@@ -12,20 +13,25 @@ interface Request{
 
 }
 
- class CreateUserController {
+class CreateUserController {
 
-    public async execute({name, email, password, type}:Request):Promise<User>{
-        
-        const userRepository = getRepository(User)
+   public async execute({name, email, password, type}:Request){
+       
+       const userRepository = getRepository(User)
 
-        const hashed = await hash(password, 8)
+       const hashed = await hash(password, 8)
 
-        const exists = await userRepository.findOne({
+       if(!email){
+           throw new AppError("Email incorreto", 403)
+       }
+
+       const exists = await userRepository.findOne({
             where:{email}
         })
 
         if(exists){
-            throw new Error("Esse usuário ja existe")
+         
+            throw new AppError("Esse usuário já existe", 403)
         }
 
         const user = userRepository.create({
