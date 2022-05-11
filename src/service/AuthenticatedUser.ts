@@ -27,7 +27,7 @@ class AuthenticatedUser {
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-            throw new AppError("Email/Password incorret");
+            throw new AppError("Email/Password incorret",401);
           }
       
           const token = sign(

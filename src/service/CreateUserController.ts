@@ -21,8 +21,9 @@ class CreateUserController {
 
        const hashed = await hash(password, 8)
 
-       if(!email || !name || !password || !type){
-           throw new AppError("Os campos devem ser preenchidos", 403)
+       
+       if(!email || !name || !password || !String(type)){
+           throw new AppError("Os campos de)vem ser preenchidos", 403)
        }
 
        const exists = await userRepository.findOne({
