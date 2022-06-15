@@ -48,17 +48,17 @@ usersRouter.post('/', ensureAuthenticated, async (request, response) => {
   
     const createUser = new AuthenticatedUser();
   
-    const token = await createUser.execute({
+    const data = await createUser.execute({
       
       email,
       password,
      
     });
 
-    console.log(token)
+    console.log(data)
   
   
-    return response.json(token);
+    return response.json(data);
   });
 
   export default usersRouter

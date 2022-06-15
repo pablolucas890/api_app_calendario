@@ -20,6 +20,8 @@ class AuthenticatedUser {
             email
         })
 
+      
+
         if(!user){
             throw new AppError("Email/Senha incorretos", 401)
         }
@@ -41,7 +43,7 @@ class AuthenticatedUser {
             }
           );
       
-          return token; 
+          return {user, token}; 
 
     }
 
