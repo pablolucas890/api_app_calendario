@@ -7,7 +7,7 @@ import CreateUserController from "../service/CreateUserController";
 const usersRouter  =  Router()
 
 
-usersRouter.post('/', ensureAuthenticated, async (request, response) => {
+usersRouter.post('/', async (request, response) => {
     const { name, email, password,type} = request.body;
   
     const createUser = new CreateUserController();
@@ -44,8 +44,10 @@ usersRouter.post('/', ensureAuthenticated, async (request, response) => {
   });
 
   usersRouter.post('/login', async (request, response) => {
+
+
     const { email, password} = request.body;
-  
+    
     const createUser = new AuthenticatedUser();
   
     const data = await createUser.execute({
@@ -55,7 +57,7 @@ usersRouter.post('/', ensureAuthenticated, async (request, response) => {
      
     });
 
-    console.log(data)
+
   
   
     return response.json(data);

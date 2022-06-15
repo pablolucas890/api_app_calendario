@@ -3,8 +3,15 @@ import 'express-async-errors'
 import express, { Request, Response, NextFunction } from 'express';
 import routes from './routes';
 import './database';
+import cors from 'cors';
 import AppError from './errors/AppError';
 const app = express();
+const allowedOrigins = ['http://localhost:3335'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+app.use(cors(options))
 app.use(express.json());
 
 app.use(routes);
