@@ -1,6 +1,7 @@
 import {
-  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn,
+  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, OneToOne, ManyToOne, OneToMany,
 } from 'typeorm';
+import User from './User';
 
 @Entity('events')// decorator, associoa a classe Appointment à entidade appointment do database
 class Event {
@@ -9,6 +10,9 @@ class Event {
 
     @Column()
     title?: string;
+
+    @Column()
+    username?: string;
 
     @Column()
     description?: string;

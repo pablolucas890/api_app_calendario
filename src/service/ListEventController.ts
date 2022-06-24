@@ -1,5 +1,6 @@
 import { getRepository } from "typeorm"
 import Event from "../models/Event";
+import User from "../models/User";
 
 class ListEventController {
 
@@ -8,7 +9,6 @@ class ListEventController {
     const eventRepository = getRepository(Event)
 
     const eventList = await eventRepository.find()
-
     return eventList
 
     }

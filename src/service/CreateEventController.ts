@@ -3,6 +3,7 @@ import Event from "../models/Event"
 
 interface Request {
     title:string;
+    username:string;
     description:string;
     link:string;
     image:Number;
@@ -15,12 +16,13 @@ interface Request {
 
 class CreateEventController{
 
-    public async execute({title, description, link, image, event_type, calendar_type, date_start, date_end}:Request): Promise<Event>{
+    public async execute({title, username, description, link, image, event_type, calendar_type, date_start, date_end}:Request): Promise<Event>{
         
         const eventRepository = getRepository(Event)
 
         const event = eventRepository.create({
            title,
+           username,
            description,
            link,
            image,
@@ -28,8 +30,6 @@ class CreateEventController{
            calendar_type,
            date_start,
            date_end,
-
-
         })
         
         await eventRepository.save(event)

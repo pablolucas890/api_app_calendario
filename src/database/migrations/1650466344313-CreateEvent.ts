@@ -19,6 +19,11 @@ export class CreateEvent1650466344313 implements MigrationInterface {
                 type: 'varchar',
               },
               {
+                name: "username",
+                length: '300',
+                type: 'varchar',
+              },
+              {
                 name: 'description',
                 length: '300',
                 type: 'varchar',
